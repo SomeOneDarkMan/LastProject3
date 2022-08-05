@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="f0694529_DBFIRSTPROJECT@f0694529.xsph.ru" uuid="7ead2b28-ce84-47ee-82da-c9dc65b1c10c">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://f0694529.xsph.ru:3306/f0694529_DBFIRSTPROJECT
+spring.datasource.username=f0694529_DBFIRSTPROJECT
+spring.datasource.password=147852369Qq
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+spring.jpa.properties.hibernate.show_sql=true
+
+spring.mvc.hiddenmethod.filter.enabled=true</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://f0694529.xsph.ru:3306/f0694529_DBFIRSTPROJECT</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
