@@ -6,6 +6,7 @@ import ru.Belov.LastProject3.Models.RequestsModel;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 public class DTOBannerModel {
 
@@ -16,6 +17,19 @@ public class DTOBannerModel {
     float price;
     CategoryModel categoryModel;
     List<RequestsModel> requestsModel;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DTOBannerModel that = (DTOBannerModel) o;
+        return id == that.id && Float.compare(that.price, price) == 0 && name.equals(that.name) && content.equals(that.content);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, content, price);
+    }
 
     public int getId() {
         return id;

@@ -3,6 +3,7 @@ package ru.Belov.LastProject3.Models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.internal.util.stereotypes.Lazy;
 
 import javax.persistence.*;
@@ -29,10 +30,12 @@ public class BannerModel {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     CategoryModel categoryModel;
     @OneToMany (mappedBy = "bannerModels",fetch =FetchType.LAZY)//
+    @JsonManagedReference
     List<RequestsModel> requestsModel;
 
     public BannerModel() {
     }
+
 
     public int getBannerId() {
         return id;

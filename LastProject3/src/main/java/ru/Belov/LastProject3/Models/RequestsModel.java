@@ -1,4 +1,5 @@
 package ru.Belov.LastProject3.Models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,10 +17,11 @@ public class RequestsModel {
     @Column(name = "IP_ADDRESS")
     String ipAddress;
     @Column(name = "DATE")
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "MM/dd/yyyy h:mm:ss a")
     Date date;
     @ManyToOne()
+    @JsonBackReference
     @JoinColumn(name = "BANNER_ID", referencedColumnName = "ID")
     BannerModel bannerModels;
     public RequestsModel(){}
