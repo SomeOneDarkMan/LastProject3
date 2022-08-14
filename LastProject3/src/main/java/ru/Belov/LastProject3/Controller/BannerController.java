@@ -14,6 +14,7 @@ import ru.Belov.LastProject3.until.BannerValidator;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/Banner")
 public class BannerController {
     private final
     BannerService bannerService;
@@ -34,14 +35,14 @@ public class BannerController {
         bannerService.create(bannerModel);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/getBanner/{id}")
+    @GetMapping("/get/{id}")
     @ResponseBody
     public DTOBannerModel getBanner(@PathVariable("id")int id, HttpServletRequest httpServletRequest){
        bannerService.getBannerId(id);
        DTOBannerModel dtoBannerModel=new DTOBannerModel();
        modelMapper.map(bannerService.getBannerId(id),dtoBannerModel);
 
-        requestsService.create(httpServletRequest);
+     //   requestsService.create(httpServletRequest); для проверки было
 
         return  dtoBannerModel;
     }

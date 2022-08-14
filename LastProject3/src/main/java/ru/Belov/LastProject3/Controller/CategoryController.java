@@ -4,14 +4,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.Belov.LastProject3.Models.CategoryModel;
 import ru.Belov.LastProject3.Services.CategoryService;
 import ru.Belov.LastProject3.until.CategoryValidator;
 
 @RestController
+@RequestMapping("/Category")
 public class CategoryController {
     private final CategoryService categoryService;
     private final ModelMapper modelMapper;

@@ -4,10 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.Belov.LastProject3.DTO.DTORequestsModel;
+import ru.Belov.LastProject3.Models.RequestsModel;
 import ru.Belov.LastProject3.Services.RequestsService;
 import ru.Belov.LastProject3.until.RequestsValidator;
 
@@ -25,9 +24,13 @@ public class RequestsController {
         this.requestsService = requestsService;
         this.requestsValidator = requestsValidator;
     }
-@PostMapping("/created")
-    public HttpStatus createRequests(HttpServletRequest httpServletRequest){
-           requestsService.create(httpServletRequest);
-           return HttpStatus.OK;
+@GetMapping("/get")
+    public DTORequestsModel createRequests(HttpServletRequest httpServletRequest){
+
+    RequestsModel requestsModel=requestsService.getRequests(httpServletRequest);
+    DTORequestsModel dtoRequestsModel=new DTORequestsModel();
+    modelMapper.map(requestsModel,dtoRequestsModel);
+
+           return dtoRequestsModel ;
     }
 }
