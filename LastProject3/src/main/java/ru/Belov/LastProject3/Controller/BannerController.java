@@ -46,4 +46,11 @@ public class BannerController {
 
         return  dtoBannerModel;
     }
+    @PostMapping("/delete/{id}")
+    public HttpStatus deleteBanner(@PathVariable("id")int id){
+        bannerService.madeDelete(id);
+
+        return HttpStatus.OK;
+
+    }
 }

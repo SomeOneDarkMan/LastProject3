@@ -29,4 +29,10 @@ public class BannerService {
 
     return modelBannerOptional.orElse(null);
     }
+    @Transactional
+    public void madeDelete(int id) {
+        BannerModel bannerModel=bannerRepositories.findById(id).orElse(null);   // выбрасывать ошибку ( чуть позде сделать)
+         bannerModel.setDeleted(true);
+         bannerRepositories.save(bannerModel);
+    }
 }

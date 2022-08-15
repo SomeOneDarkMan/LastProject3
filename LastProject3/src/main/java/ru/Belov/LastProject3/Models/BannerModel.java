@@ -30,7 +30,8 @@ public class BannerModel {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     CategoryModel categoryModel;
     @OneToMany (mappedBy = "bannerModels",fetch =FetchType.LAZY)//
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonIgnore
     List<RequestsModel> requestsModel;
 
     public BannerModel() {

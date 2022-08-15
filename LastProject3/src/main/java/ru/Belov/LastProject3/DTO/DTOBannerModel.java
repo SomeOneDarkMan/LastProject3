@@ -1,6 +1,7 @@
 package ru.Belov.LastProject3.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.Belov.LastProject3.Models.CategoryModel;
 import ru.Belov.LastProject3.Models.RequestsModel;
 
@@ -15,7 +16,9 @@ public class DTOBannerModel {
     String content;
     boolean deleted;
     float price;
+    @JsonIgnore
     CategoryModel categoryModel;
+    @JsonIgnore
     List<RequestsModel> requestsModel;
 
     @Override

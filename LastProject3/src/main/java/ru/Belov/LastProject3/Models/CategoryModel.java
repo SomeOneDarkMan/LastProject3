@@ -2,6 +2,7 @@ package ru.Belov.LastProject3.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,6 +19,7 @@ public class CategoryModel {
     String reqName;
     @Column(name = "DELETED")
     boolean deleted;
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JsonManagedReference
     @OneToMany(mappedBy = "categoryModel",fetch =FetchType.LAZY)
     List<BannerModel>bannerModels;

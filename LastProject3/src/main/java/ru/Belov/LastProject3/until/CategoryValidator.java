@@ -9,7 +9,7 @@ import ru.Belov.LastProject3.Models.CategoryModel;
 public class CategoryValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
-        return DTOCategoryModel.class.equals(clazz);
+        return CategoryModel.class.equals(clazz);
     }
 
     @Override

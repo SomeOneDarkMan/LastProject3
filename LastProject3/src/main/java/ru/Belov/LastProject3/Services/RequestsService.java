@@ -8,6 +8,7 @@ import ru.Belov.LastProject3.Models.BannerModel;
 import ru.Belov.LastProject3.Models.RequestsModel;
 import ru.Belov.LastProject3.Repositories.BannerRepositories;
 import ru.Belov.LastProject3.Repositories.RequestsRepositories;
+import ru.Belov.LastProject3.until.Exceptions.RequestWithBannerNotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -54,9 +55,9 @@ public class RequestsService {
         if (ip == null) {
             ip = httpServletRequest.getRemoteAddr();
         }
-        List<Integer> requestsModelList=session.createQuery("SELECT p.bannerModels.id  from RequestsModel p  where p.ipAddress=:ip",Integer.class).setParameter("ip",ip).getResultList();
+        List<Integer> requestsModelList=session.createQuery("SELECT p.bannerModels.id  from RequestsModel p  where p.ipAddress=:ip and p.bannerModels.deleted=false ",Integer.class).setParameter("ip",ip).getResultList();
 
-        List<Integer> bannerModelList=session.createQuery("select p.id from BannerModel p",Integer.class).getResultList();
+        List<Integer> bannerModelList=session.createQuery("select p.id from BannerModel p where p.deleted=false ",Integer.class).getResultList();
 
         Set<Integer> requestsModelSet=new HashSet<>(requestsModelList);
         Set<Integer>  bannerModelSet=new LinkedHashSet<>( bannerModelList);
@@ -64,6 +65,10 @@ public class RequestsService {
 
         List<Integer> listBannerToSet=new ArrayList<>();
         listBannerToSet.addAll(bannerModelSet);
+        if(listBannerToSet.size()==0){
+            throw new RequestWithBannerNotFoundException("NoBanner");
+        }
+
 
         Random random=new Random();
         RequestsModel requestsModel=new RequestsModel();
@@ -73,7 +78,7 @@ public class RequestsService {
         requestsModel.setBannerModels(bannerRepositories.findById(id ).get());
 
         return create(httpServletRequest,requestsModel);
-        /*разобраться с ошибкой когда все банеры показаны в спике больше нет банеров и надо присылать ошиббку в виде "больше банеров нет" */
+
 
     }
 }

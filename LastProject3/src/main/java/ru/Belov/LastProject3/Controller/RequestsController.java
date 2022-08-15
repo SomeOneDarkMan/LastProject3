@@ -4,11 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.Belov.LastProject3.DTO.DTORequestsModel;
 import ru.Belov.LastProject3.DTO.SecondDTORequestsModel;
 import ru.Belov.LastProject3.Models.RequestsModel;
 import ru.Belov.LastProject3.Services.RequestsService;
+import ru.Belov.LastProject3.until.Exceptions.RequestWithBannerNotFoundException;
+import ru.Belov.LastProject3.until.ReqExceptoins.RequestsExceptionResponse;
 import ru.Belov.LastProject3.until.RequestsValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,5 +36,11 @@ public class RequestsController {
     modelMapper.map(requestsModel,seconddtoRequestsModel);
 
            return seconddtoRequestsModel ;
+    }
+
+    @ExceptionHandler
+    private ResponseEntity<RequestsExceptionResponse> thereAreNoBannerNow(RequestWithBannerNotFoundException ex){
+        RequestsExceptionResponse requestsExceptionResponse=new RequestsExceptionResponse(ex.getMessage());
+        return new ResponseEntity<>(requestsExceptionResponse,HttpStatus.NOT_FOUND);
     }
 }
