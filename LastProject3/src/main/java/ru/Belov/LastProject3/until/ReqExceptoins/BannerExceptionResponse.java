@@ -7,6 +7,9 @@ public class BannerExceptionResponse {
         this.message = message;
     }
 
+    public BannerExceptionResponse() {
+    }
+
     public String getMessage() {
         return message;
     }

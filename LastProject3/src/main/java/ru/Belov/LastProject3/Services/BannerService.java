@@ -35,4 +35,7 @@ public class BannerService {
          bannerModel.setDeleted(true);
          bannerRepositories.save(bannerModel);
     }
+    public Optional<BannerModel> checkBannerForValid(String name){
+        return bannerRepositories.findBannerModelsByName(name);
+    }
 }

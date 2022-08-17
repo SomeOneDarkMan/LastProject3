@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.internal.util.stereotypes.Lazy;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -15,12 +16,15 @@ public class BannerModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator="native")
     private int id;
+
     @Column(name = "NAME")
     String name;
+
     @Column(name = "CONTENT")
     String content;
     @Column(name = "DELETED")
     boolean deleted;
+
     @Column(name = "PRICE")
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
     float price;
